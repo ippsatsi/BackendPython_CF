@@ -20,6 +20,7 @@ class Ingrediente(models.Model):
         ("LAC", "Lacteos"),
         ("OVO", "Huevos"),
         ('FRU', 'Frutas'),
+        ('GRA','Granos,Cereales'),
         ("OTR", "Otros"),
     ]
     nombre = models.CharField(max_length=100)
