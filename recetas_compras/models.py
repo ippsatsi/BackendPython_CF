@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+from django.urls import reverse
 
 
 class Ingrediente(models.Model):
@@ -42,6 +42,9 @@ class Ingrediente(models.Model):
     class Meta:
         pass
 
+    def get_absolute_url(self):
+        return reverse("detalle_ingrediente", args=[str(self.id)])
+
 
 class Receta(models.Model):
     TYPE_INGREDIENTE_PRINCIPAL = [
@@ -58,7 +61,7 @@ class Receta(models.Model):
         max_length= 3,
         choices= TYPE_INGREDIENTE_PRINCIPAL,
     )
-    ingredientes = models.ManyToManyField(Ingrediente, related_name= 'get_ingredientes',  through='M2M_Recetario')
+    ingredientes = models.ManyToManyField(Ingrediente, related_name= 'get_ingredientes',  through='M2MRecetario')
     image = models.ImageField(upload_to="recetas_compras/photos")
     preparacion = models.TextField()
     fecha_creacion = models.DateTimeField(default=timezone.now)
@@ -68,9 +71,11 @@ class Receta(models.Model):
 
     class Meta:
         pass
-        
+    
+    def get_absolute_url(self):
+        return reverse("detalle_receta", args=[str(self.id)])
 
-class M2M_Recetario(models.Model):
+class M2MRecetario(models.Model):
     ingrediente = models.ForeignKey(Ingrediente, on_delete= models.PROTECT)
     receta = models.ForeignKey(Receta, on_delete= models.CASCADE)
     cantidad = models.DecimalField(max_digits=3, decimal_places=1, )
@@ -92,3 +97,6 @@ class Semana(models.Model):
 
     class Meta:
         pass
+
+    def get_absolute_url(self):
+        return reverse("detalle_semana", args=[str(self.id)])

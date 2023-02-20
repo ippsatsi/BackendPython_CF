@@ -5,11 +5,10 @@
     <div class="container px-4">
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
-                <h2>Listado de Ingredientes</h2>
+                <h2>Listado de Semanas</h2>
                 <br>
-                <h3 class="bg-light"><a href="{% url 'crear_ingrediente' %}">Añadir Ingrediente</a></h3>
                 {% if user.is_authenticated %}
-                    <h3 class="bg-light"><a href="/">Añadir Ingrediente</a></h3>
+                    <h3 class="bg-light"><a href="/">Añadir Compra Semanal</a></h3>
                 {% endif %}
                 <br><br>
                 <table class="table">
@@ -17,20 +16,18 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Tipo Ingrediente</th>
-                        <th scope="col">Unidad de medida</th>
+                        
                     </tr>
                     </thead>
                     <tbody>
-                    {% for ingrediente in object_list %}
+                    {% for semana in object_list %}
                     <tr>
-                        <th scope="row">{{ ingrediente.id }}</th>
-                        <td><a href="{{ ingrediente.get_absolute_url }}">{{ ingrediente }}</td>
-                        <td>{{ ingrediente.get_tipo_ingrediente_display }}</td>
-                        <td>{{ ingrediente.get_tipo_unidad_display }}</td>
+                        <th scope="row">{{ semana.id }}</th>
+                        <td><a href="{{ semana.get_absolute_url }}">{{ semana }}</td>
+
                     </tr>
                     {% empty %}
-                        <p>No hay ingredientes disponibles.</p>
+                        <p>No hay compras semanales disponibles.</p>
                     {% endfor %}
                     </tbody>
                 </table>
