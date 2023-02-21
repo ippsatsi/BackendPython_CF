@@ -24,7 +24,7 @@
                     {% for receta in object_list %}
                     <tr>
                         <th scope="row">{{ receta.id }}</th>
-                        <td><!-- a href="{{ actor.get_absolute_url }}"-->{{ receta }}</td>
+                        <td><a href="{{ receta.get_absolute_url }}">{{ receta }}</td>
                         <td>{{ receta.get_ingr_principal_display }}</td>
 
                     </tr>

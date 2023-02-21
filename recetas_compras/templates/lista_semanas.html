@@ -7,6 +7,7 @@
             <div class="col-lg-8">
                 <h2>Listado de Semanas</h2>
                 <br>
+                <h3 class="bg-light"><a href="{% url 'crear_semana' %}">Añadir Semana</a></h3>
                 {% if user.is_authenticated %}
                     <h3 class="bg-light"><a href="/">Añadir Compra Semanal</a></h3>
                 {% endif %}
