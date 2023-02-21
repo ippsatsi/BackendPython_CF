@@ -15,6 +15,9 @@
                     <br><br>
                 {% endif %}
             </div>
+            <div class="col-5">
+                <img src={{ object.image.url }} class="img-fluid">
+            </div>
             <div class="col-lg-8">
                 <h2>Receta</h2>
                 <p class="lead">{{ object.nombre }}</p>
@@ -26,10 +29,12 @@
                 <br>
 
                 <h3>Ingredientes:</h3>
-                {% for ingr_receta in object.m2mrecetario_set.all %}
+                
+                {% for ingr_receta in lista_ingre %}
                 <ul>
                      <li><span style="width:55px">{{ ingr_receta.cantidad }}</span>
-                        <span><a href="{{ ingr_receta.get_absolute_url }}">{{ ingr_receta }}</span></a></li>
+                        <span style="width:55px">{{ ingr_receta.unidad }}</span>
+                        <span>{{ ingr_receta.nombre }}</span></a></li>
                 </ul>
             {% endfor %}
             <h2>Preparacion:</h2>
