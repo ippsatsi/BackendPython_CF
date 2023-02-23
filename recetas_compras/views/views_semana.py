@@ -25,7 +25,7 @@ class ListaSemana(ListView):
 class CrearSemana(CreateView):
     model = Semana
     template_name = 'semana_form.html'
-    fields = ['nombre']
+    fields = ['nombre', 'recetas']
 
 
 class DetalleSemana(DetailView):

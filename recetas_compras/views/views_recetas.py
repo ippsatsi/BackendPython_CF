@@ -1,4 +1,5 @@
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView
 from ..models import Receta, Ingrediente
 
 class ListaReceta(ListView):
@@ -6,6 +7,12 @@ class ListaReceta(ListView):
     ordering = "nombre"
     paginate_by = 100
     template_name = "lista_recetas.html"
+
+
+class CrearReceta(CreateView):
+    model = Receta
+    template_name = 'receta_form.html'
+    fields = ['nombre', 'ingr_principal', 'ingredientes', 'image', 'preparacion']
 
 
 class DetalleReceta(DetailView):

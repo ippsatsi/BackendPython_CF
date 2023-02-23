@@ -9,9 +9,12 @@
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
                 <h1>{{ object.full_name }}</h1><br>
+                <h3 class="bg-light"><a href="/">Actualizar</a></h3>
+                <h3 class="bg-light"><a href="{% url 'borrar_ingrediente' ingrediente.id %}">Eliminar</a></h3>
+                <br><br>
                 {% if user.is_authenticated %}
                     <h3 class="bg-light"><a href="/">Actualizar</a></h3>
-                    <h3 class="bg-light"><a href="/">Eliminar</a></h3>
+                    <h3 class="bg-light"><a href="{% url 'borrar_ingrediente' ingrediente.id %}">Eliminar</a></h3>
                     <br><br>
                 {% endif %}
             </div>

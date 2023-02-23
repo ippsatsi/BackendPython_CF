@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.urls import reverse_lazy
 from ..models import Ingrediente
 
 
@@ -20,3 +21,8 @@ class DetalleIngrediente(DetailView):
     model = Ingrediente
     template_name = 'detalle_ingrediente.html'
 
+
+class BorrarIngrediente(DeleteView):
+    model = Ingrediente
+    success_url = reverse_lazy("lista_ingredientes")
+    template_name = "confirm_delete.html"

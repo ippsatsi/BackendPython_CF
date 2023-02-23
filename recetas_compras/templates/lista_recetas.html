@@ -6,6 +6,7 @@
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
                 <h2>Listado de Recetas</h2>
+                <h3 class="bg-light"><a href="{% url 'crear_receta' %}">Añadir Receta</a></h3>
                 <br>
                 {% if user.is_authenticated %}
                     <h3 class="bg-light"><a href="/">Añadir Receta</a></h3>
