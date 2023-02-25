@@ -84,7 +84,7 @@ class M2MRecetario(models.Model):
         return f'{self.receta} - {self.ingrediente}'
 
     class Meta:
-        pass
+        unique_together = [['ingrediente', 'receta']]
 
 
 class Semana(models.Model):
