@@ -1,5 +1,7 @@
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+from ..forms import *
 from ..models import Receta, Ingrediente
 
 class ListaReceta(ListView):
@@ -9,11 +11,27 @@ class ListaReceta(ListView):
     template_name = "lista_recetas.html"
 
 
+# class CrearReceta(CreateView):
+#     model = Receta
+#     template_name = 'receta_form.html'
+#     fields = ['nombre', 'ingr_principal', 'ingredientes', 'image', 'preparacion']
+
+
 class CrearReceta(CreateView):
     model = Receta
-    template_name = 'receta_form.html'
-    fields = ['nombre', 'ingr_principal', 'ingredientes', 'image', 'preparacion']
+    fields = ['nombre', 'ingr_principal']
+    template_name = 'receta2_form.html'
+    success_url = reverse_lazy('lista_recetas')
 
+    def get_context_data(self, **kwargs):
+        data = super(CrearReceta, self).get_context_data(**kwargs)
+        if self.request.POST:
+            data['ingredientes'] = M2mrecetarioFormSet(self.request.POST)
+        else:
+            data['ingredientes'] = M2mrecetarioFormSet()
+
+        return data
+    
 
 class DetalleReceta(DetailView):
     model = Receta
