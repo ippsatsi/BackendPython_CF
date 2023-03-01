@@ -62,7 +62,7 @@ class Receta(models.Model):
         choices= TYPE_INGREDIENTE_PRINCIPAL,
     )
     ingredientes = models.ManyToManyField(Ingrediente, related_name= 'get_ingredientes',  through='M2MRecetario')
-    image = models.ImageField(blank= True, upload_to="recetas_compras/photos")
+    image = models.ImageField(blank= True, upload_to="recetas_compras/photos", default= "recetas_compras/photos/Image_not_available.png")
     preparacion = models.TextField()
     fecha_creacion = models.DateTimeField(default=timezone.now)
 

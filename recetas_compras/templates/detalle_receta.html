@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 
 <!-- Ingrediente section-->
@@ -16,7 +15,8 @@
                 {% endif %}
             </div>
             <div class="col-5">
-                <img src={{ object.image.url|default:'/recetas_compras/photos/Image_not_available.png' }} class="img-fluid">
+                <img src={{ object.image.url }} class="img-fluid">
+                
             </div>
             <div class="col-lg-8">
                 <h2>Receta</h2>
