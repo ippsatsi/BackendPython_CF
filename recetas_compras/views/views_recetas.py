@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
+from django.db import transaction
 from ..forms import *
 from ..models import Receta, Ingrediente
 
@@ -32,6 +33,18 @@ class CrearReceta(CreateView):
 
         return data
     
+    def form_valid(self, form):
+        context = self.get_context_data()
+        ingredientes = context['ingredientes']
+        with transaction.atomic():
+            self.object = form.save()
+
+            if ingredientes.is_valid():
+                ingredientes.instance = self.object
+                ingredientes.save()
+        return super(CrearReceta, self).form_valid(form)
+
+        
 
 class DetalleReceta(DetailView):
     model = Receta
