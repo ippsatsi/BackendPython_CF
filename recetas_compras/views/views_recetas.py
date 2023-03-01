@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
 from django.urls import reverse_lazy
 from django.db import transaction
 from ..forms import *
@@ -10,12 +10,6 @@ class ListaReceta(ListView):
     ordering = "nombre"
     paginate_by = 100
     template_name = "lista_recetas.html"
-
-
-# class CrearReceta(CreateView):
-#     model = Receta
-#     template_name = 'receta_form.html'
-#     fields = ['nombre', 'ingr_principal', 'ingredientes', 'image', 'preparacion']
 
 
 class CrearReceta(CreateView):
@@ -69,3 +63,8 @@ class DetalleReceta(DetailView):
 
         return context
     
+
+class BorrarReceta(DeleteView):
+    model = Receta
+    success_url = reverse_lazy("lista_recetas")
+    template_name = "confirm_delete.html"
