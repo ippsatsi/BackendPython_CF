@@ -14,7 +14,7 @@ class ListaReceta(ListView):
 
 class CrearReceta(CreateView):
     model = Receta
-    fields = ['nombre', 'ingr_principal']
+    fields = ['nombre', 'image', 'ingr_principal', 'preparacion']
     template_name = 'receta2_form.html'
     success_url = reverse_lazy('lista_recetas')
 

@@ -14,7 +14,15 @@
                         {{ form.as_table }}
                     </table>
                     <table class="table-light" >
-                        {{ ingredientes }}
+
+                            {{ ingredientes.management_form }}
+                            {% for form in ingredientes %}
+                                {% for field in form.visible_fields %}
+                                    {{ field.label_tag }} {{ field }}
+                                {% endfor %}
+                                <p></p>
+                            {% endfor %}
+
                     </table>
                     <br>
                     <button type="submit" class="save btn btn-dark">Save</button>

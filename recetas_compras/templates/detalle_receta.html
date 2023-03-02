@@ -27,15 +27,15 @@
 
 
                 <h3>Principal:</h3>
-                <p class="lead">{{ object.ingr_principal }}</p>
+                <p class="lead">{{ object.get_ingr_principal_display }}</p>
                 <br>
 
                 <h3>Ingredientes:</h3>
                 
                 {% for ingr_receta in lista_ingre %}
                 <ul>
-                     <li><span style="width:55px">{{ ingr_receta.cantidad }}</span>
-                        <span style="width:55px">{{ ingr_receta.unidad }}</span>
+                     <li><span style="width:55px; display: inline-block;">{{ ingr_receta.cantidad }}</span>
+                        <span style="width:100px; display: inline-block;">{{ ingr_receta.unidad }}</span>
                         <span>{{ ingr_receta.nombre }}</span></a></li>
                 </ul>
             {% endfor %}
