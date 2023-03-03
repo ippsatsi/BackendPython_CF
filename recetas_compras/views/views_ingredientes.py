@@ -26,3 +26,8 @@ class BorrarIngrediente(DeleteView):
     model = Ingrediente
     success_url = reverse_lazy("lista_ingredientes")
     template_name = "confirm_delete.html"
+
+class ActualizarIngrediente(UpdateView):
+    model = Ingrediente
+    template_name = 'ingrediente_form.html'
+    fields = ['nombre', 'tipo_ingrediente', 'tipo_unidad']
