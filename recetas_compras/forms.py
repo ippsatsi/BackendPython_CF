@@ -19,3 +19,8 @@ M2mrecetarioFormSet = inlineformset_factory(
     Receta, M2MRecetario, form= AgregarIngredienteForm,
     fields= ['ingrediente', 'cantidad'], extra= 6, can_delete= False
 )
+
+M2mrecetarioEditFormSet = inlineformset_factory(
+    Receta, M2MRecetario, form= AgregarIngredienteForm,
+    fields= ['ingrediente', 'cantidad'], extra= 6, can_delete= True
+)

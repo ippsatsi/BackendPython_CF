@@ -17,6 +17,7 @@
 
                             {{ ingredientes.management_form }}
                             {% for form in ingredientes %}
+                            {{ form.id }}
                                 {% for field in form.visible_fields %}
                                     {{ field.label_tag }} {{ field }}
                                 {% endfor %}

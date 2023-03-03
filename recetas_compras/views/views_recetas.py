@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, DeleteView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.db import transaction
 from ..forms import *
@@ -29,16 +29,46 @@ class CrearReceta(CreateView):
     
     def form_valid(self, form):
         context = self.get_context_data()
+        print(context)
         ingredientes = context['ingredientes']
         with transaction.atomic():
             self.object = form.save()
 
             if ingredientes.is_valid():
+                print('valido')
                 ingredientes.instance = self.object
                 ingredientes.save()
         return super(CrearReceta, self).form_valid(form)
 
-        
+
+class ActualizarReceta(UpdateView):
+    model = Receta
+    fields = ['nombre', 'image', 'ingr_principal', 'preparacion']
+    template_name = 'receta2_form.html'
+    success_url = reverse_lazy('lista_recetas')
+
+    def get_context_data(self, **kwargs):
+        data = super(ActualizarReceta, self).get_context_data(**kwargs)
+        if self.request.POST:
+            data['ingredientes'] = M2mrecetarioEditFormSet(self.request.POST, instance= self.object)
+        else:
+            data['ingredientes'] = M2mrecetarioEditFormSet(instance= self.object)
+
+        return data
+    
+    def form_valid(self, form):
+        context = self.get_context_data()
+        print(context)
+        ingredientes = context['ingredientes']
+        with transaction.atomic():
+            self.object = form.save()
+
+            if ingredientes.is_valid():
+                print('valido')
+                ingredientes.instance = self.object
+                ingredientes.save()
+        return super(ActualizarReceta, self).form_valid(form)
+
 
 class DetalleReceta(DetailView):
     model = Receta
