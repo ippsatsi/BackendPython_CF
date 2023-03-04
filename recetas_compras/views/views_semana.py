@@ -43,12 +43,21 @@ class CrearSemana(CreateView):
     def form_valid(self, form):
         context = self.get_context_data()
         recetas = context['recetas']
-        with transaction.atomic():
-            self.object = form.save()
+       # with transaction.atomic():
+        self.object = form.save(commit=False)
+        # print(self.object.nombre)
+        semana_ins = Semana(nombre=self.object.nombre)
+        print(semana_ins)
 
-            if recetas.is_valid():
-                recetas.instance = self.object
-                recetas.save()
+        if recetas.is_valid():
+            print("valido")
+            form2 = recetas.save(commit= False)
+            # form2.save(commi)
+            for i in form2:
+                print(i)
+                # self.object.receta = i.
+            recetas.instance = self.object
+            recetas.save()
         return super(CrearSemana, self).form_valid(form)
     
 
