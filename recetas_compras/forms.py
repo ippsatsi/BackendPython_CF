@@ -29,7 +29,7 @@ M2mrecetarioEditFormSet = inlineformset_factory(
 
 
 class AgregarRecetaForm(ModelForm):
-    # Debemos usar como nombre del campo como variable
+
     nombre = forms.ModelChoiceField(queryset=Receta.objects.all())
 
 SemanaRecetasFormSet = modelformset_factory(
