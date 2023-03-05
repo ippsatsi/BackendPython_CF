@@ -13,6 +13,18 @@
                     <table class="table-light" >
                         {{ form.as_table }}
                     </table>
+                    <table class="table-light" >
+
+                            {{ recetas.management_form }}
+                            {% for form in recetas %}
+                            {{ form.id }}
+                                {% for field in form.visible_fields %}
+                                    {{ field.label_tag }} {{ field }}
+                                {% endfor %}
+                                <p></p>
+                            {% endfor %}
+
+                    </table>
                     <br>
                     <button type="submit" class="save btn btn-dark">Save</button>
                 </form>
