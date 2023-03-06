@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+from local_settings import DEBUG
+from local_settings import USER_DB
+from local_settings import PASSWORD_DB
+from local_settings import ALLOWED_HOSTS
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,9 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-k-j=@eolsec$%mbo!ci!&tz6x5yue!3kr#=rkpfd1+gurndycw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -80,8 +85,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'recetas_compras',
-        'USER': 'luis',
-        'PASSWORD': 'Configuraci0n',
+        'USER': USER_DB,
+        'PASSWORD': PASSWORD_DB,
         'HOST': 'localhost',
         'PORT': '3306',
     }
