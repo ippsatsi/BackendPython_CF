@@ -45,3 +45,32 @@ class BorrarSemana(DeleteView):
     model = Semana
     success_url = reverse_lazy("lista_semanas")
     template_name = "confirm_delete.html"
+
+
+class CrearSemana2(CreateView):
+    model = Semana
+    fields = ['nombre', ]
+    template_name = 'semana_form_old.html'
+    success_url = reverse_lazy('lista_semanas')
+
+    def get_context_data(self, **kwargs):
+        data = super(CrearSemana2, self).get_context_data(**kwargs)
+        if self.request.POST:
+            data['recetas'] = M2mSemanaFormSet2(self.request.POST)
+        else:
+            data['recetas'] = M2mSemanaFormSet2()
+
+        return data
+    
+    def form_valid(self, form):
+        context = self.get_context_data()
+        print(context)
+        recetas = context['recetas']
+        with transaction.atomic():
+            self.object = form.save()
+
+            if recetas.is_valid():
+                print('valido')
+                recetas.instance = self.object
+                recetas.save()
+        return super(CrearSemana2, self).form_valid(form)

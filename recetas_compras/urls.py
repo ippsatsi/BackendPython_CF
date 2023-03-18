@@ -2,7 +2,7 @@ from django.urls import path
 from .views.views_semana import Home
 from .views.views_ingredientes import ListaIngrediente, CrearIngrediente, DetalleIngrediente, BorrarIngrediente, ActualizarIngrediente
 from .views.views_recetas import ListaReceta, DetalleReceta, CrearReceta, BorrarReceta, ActualizarReceta
-from .views.views_semana import ListaSemana, DetalleSemana, CrearSemana, ActualizarSemana, BorrarSemana
+from .views.views_semana import ListaSemana, DetalleSemana,CrearSemana,CrearSemana2, ActualizarSemana, BorrarSemana
 
 urlpatterns = [
     path("", Home.as_view(), name="home"),
@@ -13,7 +13,7 @@ urlpatterns = [
     path("ingrediente/delete/<int:pk>", BorrarIngrediente.as_view(), name="borrar_ingrediente"),
     path("ingrediente/edit/<int:pk>", ActualizarIngrediente.as_view(), name="actualizar_ingrediente"),
     path("ingrediente/<int:pk>", DetalleIngrediente.as_view(), name="detalle_ingrediente"),
-    path("semana/create", CrearSemana.as_view(), name="crear_semana"),
+    path("semana/create", CrearSemana2.as_view(), name="crear_semana"),
     path("semana/<int:pk>", DetalleSemana.as_view(), name="detalle_semana"),
     path("semana/edit/<int:pk>", ActualizarSemana.as_view(), name="actualizar_semana"),
     path("semana/delete/<int:pk>", BorrarSemana.as_view(), name="borrar_semana"),

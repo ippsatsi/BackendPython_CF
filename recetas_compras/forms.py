@@ -35,3 +35,21 @@ class AgregarRecetaForm(ModelForm):
 SemanaRecetasFormSet = modelformset_factory(
     Receta, fields= ['nombre',], form= AgregarRecetaForm, extra= 7, can_delete= False
 )
+
+
+M2mSemanaFormset = inlineformset_factory(
+    Receta, Semana.recetas.through, fields= ['receta', 'semana']
+)
+
+
+class AgregarRecetaForm2(ModelForm):
+
+    class Meta:
+        model = Semana.recetas.through
+        exclude = ()
+
+
+M2mSemanaFormSet2 = inlineformset_factory(
+    Semana, Semana.recetas.through, form= AgregarRecetaForm2,
+    fields= ['receta', ], extra= 6, can_delete= True
+)
