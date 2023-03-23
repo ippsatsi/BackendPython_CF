@@ -1,0 +1,4 @@
+DEBUG = True
+USER_DB = 'user'
+PASSWORD_DB = 'password'
+ALLOWED_HOSTS = []
